@@ -1,6 +1,7 @@
 package ch18;
-
-import java.io.FileInputStream;
+//18-7
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class AddLineNumberExample {
     public static void main(String[] args) throws Exception{
@@ -9,18 +10,13 @@ public class AddLineNumberExample {
                 "C:\\Users\\TJ\\IdeaProjects\\thisisjava\\src\\ch18\\BufferedReaderExample.java";
         //작성위치
 
-        FileInputStream fis = new FileInputStream(filePath);
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
 
-        int readByteNo;
-        int i = 2;
-        System.out.print("1: ");
-        while ((readByteNo = fis.read()) != -1){
-            System.out.write(readByteNo);
-            if (readByteNo == 10){
-                System.out.print(i+": ");
-                i++;
-            }
+        String data;
+        int i = 0;
+        while ((data = br.readLine()) != null){
+            System.out.println(++i+": "+data);
         }
-        fis.close();
+        br.close();
     }
 }
